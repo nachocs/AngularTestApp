@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" ng-app="justEatApp">
+<head>
+  <meta charset="utf-8">
+  <title>Angular App</title>
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <script src="lib/angular/angular.js"></script>
+  <script src="js/controllers.js"></script>
+</head>
+<body ng-controller="AppListCtrl">
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2">
+        <!--Sidebar content-->
+
+        Search: <input ng-model="query">
+        Sort by:
+        <select ng-model="orderProp">
+          <option value="Name">Alphabetical</option>
+        </select>
+
+      </div>
+      <div class="span10">
+        <!--Body content-->
+
+        <ul class="itemList">
+          <li ng-repeat="item in list | filter:query | orderBy:orderProp" class="item">
+          <div class="Description" ng-show="showDetails">{{item.Description}}</div>
+          <img ng-src="{{item.LogoUrl}}" style="float:left;">
+          <a href="#" onclick="return false;" class="arrow" ng-click="showDetails = ! showDetails">&gt;</a>
+          <div class="Name">{{item.Name}}</div>
+          <div class="Address">{{item.Address.FirstLine}} {{item.Address.City}} {{item.Address.Postcode}}</div>
+
+          <div class="ratings">
+            <ng-rating rating-value="item.ratings.value" max="5" /> 
+          </div>
+          <span class="ratingNumber">({{item.ratings.number}})</span>
+          <span class="distance">{{item.distance}}</span>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
