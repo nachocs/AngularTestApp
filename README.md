@@ -1,3 +1,3 @@
 AngularTestApp
 ==============
-Smmal App showing a json with Angular.
+Small App showing a json with Angular.
